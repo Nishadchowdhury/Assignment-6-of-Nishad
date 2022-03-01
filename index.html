@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSDarena</title>
+    <link rel="shortcut icon" href="./files/images/favicon.png" type="image/x-icon">
+    <!-- for icons -->
+    <script src="https://kit.fontawesome.com/b2cee46726.js" crossorigin="anonymous"></script>
+    <!-- for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- offlineCss -->
+    <link rel="stylesheet" href="./forDlt/bootstrap.min.css">
+    <!-- customCss -->
+    <link rel="stylesheet" href="./files/style.css">
+</head>
+<body>
+    <header>
+        <div class="input-group mb-3 w-50 mx-auto mt-5">
+            <input type="text" id="userInput" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+            <div class="input-group-append">
+              <button onclick="userInputBtn()" class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+          </div>
+    </header>
+    <main class="container">
+
+      <!-- phones i got (Phone Container) --> 
+      <div id="phoneContainer" class="row row-cols-1 row-cols-md-3 g-4">
+
+
+      
+    </main>
+    <footer>
+
+      
+<!-- modal body -->
+<div class="modal fade "  data-bs-backdrop="static" data-bs-keyboard="false"  id="exampleModalToggle" aria-hidden="true"         
+aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div id="modalContainer" class="modal-content">
+        
+      </div>
+    </div>
+  
+  </div>
+<!-- modal end -->
+
+
+    </footer>
+
+
+    <!-- customJS -->
+    <script src="./files/app.js"></script>
+
+    <!-- offline bt js -->
+    <script src="./forDlt/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+<!-- 
+
+card for result
+     <div class="col shadow mx-a py-2">
+          <div class="card h-100">
+            <img src="./apple-iphone-12-pro--.jpg" class="w-50 mt-3 m-auto " alt="...">
+            <div class="card-body  border border-1 mt-3">
+              <h5 class="card-title">${phoneNmae}</h5>
+              <p class="card-text">${Phone details}</p>
+            </div>
+            <div class="card-footer m-auto">
+              <button class=" btn-info btn "  data-bs-toggle="modal" href="#exampleModalToggle" role="button" >viwe details</button>
+            </div>
+          </div>
+        </div>
+
+
+ -->
+
+
+ <!-- modal
+
+
+<div class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false"  id="exampleModalToggle" aria-hidden="true"         
+aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+
+      <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalToggleLabel">Device Name: ${phone name}</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+     <div class="modal-body">
+      <div class="card mb-3" style="max-width: 540px;">
+
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="..." class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-danger">A simple danger list group item</li>
+                <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
+                <li class="list-group-item list-group-item-info">A simple info list group item</li>
+                <li class="list-group-item list-group-item-light">A simple light list group item</li>
+                <li class="list-group-item list-group-item-dark">A simple dark list group item</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+     </div>
+
+    <div class="modal-footer">
+   
+   </div></div></div></div>
+
+
+
+  -->

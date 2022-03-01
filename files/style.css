@@ -1,0 +1,11 @@
+#notFound{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+}
+@media (min-width: 576px){
+.modal-dialog {
+    max-width:900px;
+    margin: 1.75rem auto;
+}
+
+}
