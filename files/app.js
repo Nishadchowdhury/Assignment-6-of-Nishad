@@ -20,26 +20,26 @@ const displayData = (data) =>{
         ;
     }
     else{
+        let counter = 0;
         phonesContainer.innerHTML = '';
         for(const singleData of data ){
         const phonesContainer = document.getElementById('phoneContainer');
         
         const div = document.createElement('div');
         // div.classList = ("col , shadow , mx-a , py-2");
-        const playerId = singleData.slug; 
+        const playerId = singleData.slug;
 
         div.innerHTML = 
         `
-        
         <div class="col shadow mx-a py-2">
         <div class="card h-100">
           <img src="${singleData.image}" class="w-50 mt-3 m-auto " alt="...">
           <div class="card-body  border border-1 mt-3">
             <h5 class="card-title">${singleData.phone_name}</h5>
-            <p class="card-text">Phonedetails</p>
+            <p class="card-text">${singleData.brand}</p>
           </div>
           <div class="card-footer m-auto">
-            <button class=" btn-info btn"  onclick="detailsBtn('${playerId}')"  data-bs-toggle="modal" href="#exampleModalToggle" role="button" >viwe details</button>
+            <button class="btn btn-outline-primary"  onclick="detailsBtn('${playerId}')"  data-bs-toggle="modal" href="#exampleModalToggle" role="button" >viwe details</button>
           </div>
         </div>
       </div>
@@ -47,6 +47,9 @@ const displayData = (data) =>{
         `;
         
         phonesContainer.appendChild(div);
+
+      
+
         }
     }
 
@@ -64,20 +67,30 @@ const displayData = (data) =>{
     const getDetails = (data) => {
         
     const detailModalContainer = document.getElementById('modalContainer');
+    const detailModalContainer2 = document.getElementById('modalContainer2');
 
-const releseDate = () => {
-    const getreleseDate = data.data.releaseDate;
-        
+    const releseDate = () => {
+
+    // getting date info
+    const getreleseDate = data.data.releaseDate;  
     if(getreleseDate == ''){
         const notFound = "no relese date found"; 
         return notFound;
     }else{
         return getreleseDate;
-
-    }
+    }}
     
+    //getting other info of device
+    const otherData = data.data.others;
+    let otherDetail = '';
+    for(const singleData in otherData){
+        otherDetail = otherDetail + (singleData + ' : ' + otherData[singleData] + '<br><br>' );
+
     }
 
+    // getting all the sensors list as a string
+    const sensores = data.data.mainFeatures.sensors.join(` , `);
+    
     const releseData = releseDate();
 
     detailModalContainer.innerHTML = '';
@@ -87,42 +100,62 @@ const releseDate = () => {
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     <h5 class="modal-title" id="exampleModalToggleLabel">Device Name: <span class="text-white p-2 rounded-3 bg-info"> ${data.data.name} </span> </h5> <br>
     <h6 class="text-muted">Relese date: ${releseData}</h6>
- </div>
+    </div>
          
- <div class="modal-body">
- <div class="card mb-3" style="max-width: 1000px;">
+    <div class="modal-body">
+    <div class="card mb-3" style="max-width: 1000px;">
 
    <div class="row g-0">
      <div class="col-md-4 m-auto w-25">
        <img class="img-fluid" src="${data.data.image}" alt="...">
      </div>
 
-     <div class="col-md-8 w">
-       <div class="card-body">
-         <ul class="list-group">
-           <li class="list-group-item list-group-item-danger">Storage: <br> ${data.data.mainFeatures.storage}</li>
-           <li class="list-group-item list-group-item-warning"> Display: <br>  ${data.data.mainFeatures.displaySize} </li>
-           <li class="list-group-item list-group-item-info"> ChipSet: <br> ${data.data.mainFeatures.chipSet}</li>
-           <li class="list-group-item list-group-item-light"> Memory: <br> ${data.data.mainFeatures.memory}</li>
-           <li class="list-group-item list-group-item-dark">A simple dark list group item</li>
-         </ul>
-       </div>
-     </div>
+         <div class="col-md-8 w">
+           <div class="card-body">
+             <ul class="list-group">
+               <li class="list-group-item list-group-item-danger">Storage: <br> ${data.data.mainFeatures.storage}</li>
+               <li class="list-group-item list-group-item-warning"> Display: <br>  ${data.data.mainFeatures.displaySize} </li>
+               <li class="list-group-item list-group-item-info"> ChipSet: <br> ${data.data.mainFeatures.chipSet}</li>
+               <li class="list-group-item list-group-item-dark"> Memory: <br> ${data.data.mainFeatures.memory}</li>
+             </ul>
+           </div>
+         </div>
 
-   </div>
+        </div>
 
- </div>
-</div>
-<div class="modal-footer">
-
-'footer'
-</div>
+        </div>
+      </div>
+        <div class="modal-footer justify-content-center"> 
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">See More Info</button>
+    </div>
     ` ;
-        console.log();
-    }
+
+
+    detailModalContainer2.innerHTML = '';
+    detailModalContainer2.innerHTML = 
     
+    `
+    
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalToggleLabel2">Other Facilities Of  <span class="p-2 rounded-3 bg-danger bg-opacity-25 text-dark"> ${data.data.name} </span> </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+  
+  <ul class="list-group">
+  <li class="list-group-item list-group-item-success">   <span class="p-1 mb-2 mt-2 d-inline-block rounded-3 bg-white  text-dark">Sensores    : &#8675;  &#8675; </span>  <br> ${sensores} . </li>
 
+  </ul>
+  <ul class="list-group mt-3">
+  <li class="list-group-item list-group-item-danger text-dark  ">  <span class="p-2 mt-2 d-inline-block rounded-3 bg-white  text-dark"> Other Features  : &#8675;  &#8675; </span> <br> <br> ${otherDetail} </li>
+  </ul>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">See The Basic Info</button>
+  </div>
+    `
+    ;
+  
+
+    }
 }
-
-//display result 
-
