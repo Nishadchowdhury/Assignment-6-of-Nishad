@@ -1,12 +1,34 @@
 const userInputBtn = () =>{
-    const userInput = document.getElementById('userInput').value;
+  // display spinner
+  toggleSpinner('block');
+  const userInput = () => {
+    const input = document.getElementById('userInput').value
+    if (!isNaN(input)){
+      return '';
+    }else if  (isNaN(input)){
+      return input;
+    }
+  } 
 
+  
     // get data to api 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${userInput}`;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${userInput()}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayData(data.data))
-} 
+    .then(data => displayData(data.data));
+    
+};
+
+const toggleSpinner = displayStyle => {
+  document.getElementById('spinner').style.display = displayStyle;
+  const aboutResults = displayStyle;
+  if(displayStyle == 'block'){
+  document.getElementById('mainResultContainer').style.display = 'none';
+  }
+  else if(displayStyle == 'none'){
+  document.getElementById('mainResultContainer').style.display = 'block';
+  }
+};
 
     // displayResults 
 const displayData = (data) =>{
@@ -15,9 +37,12 @@ const displayData = (data) =>{
         phonesContainer.innerHTML = '';
         phonesContainer.innerHTML = 
         `
-        <p id="notFound" class="text-center w-75 m-auto mt-5 bg-danger rounded-3 text-white bg-opacity-75"><span class="fs-2 ">N</span>O Result found <span class="text-warning" ><i class="fas fa-exclamation-triangle"></i></span>  </p>
+        <p id="notFound" class="text-center w-75 m-auto mt-5 bg-danger rounded-3 text-white 
+        bg-opacity-75"><span class="fs-2 ">N</span>O Result found <span class="text-warning" >
+        <i class="fas fa-exclamation-triangle"></i></span>  </p>
         `
         ;
+        toggleSpinner('none');
     }
     else{
         let counter = 0;
@@ -26,9 +51,7 @@ const displayData = (data) =>{
         const phonesContainer = document.getElementById('phoneContainer');
         
         const div = document.createElement('div');
-        // div.classList = ("col , shadow , mx-a , py-2");
         const playerId = singleData.slug;
-
         div.innerHTML = 
         `
         <div class="col shadow mx-a py-2">
@@ -39,18 +62,20 @@ const displayData = (data) =>{
             <p class="card-text">${singleData.brand}</p>
           </div>
           <div class="card-footer m-auto">
-            <button class="btn btn-outline-primary"  onclick="detailsBtn('${playerId}')"  data-bs-toggle="modal" href="#exampleModalToggle" role="button" >viwe details</button>
+            <button class="btn btn-outline-primary" 
+            onclick="detailsBtn('${playerId}')"  data-bs-toggle="modal" href="#exampleModalToggle" role="button" >viwe details</button>
           </div>
         </div>
       </div>
-
         `;
-        
+
         phonesContainer.appendChild(div);
-
-      
-
-        }
+          counter ++
+          if(counter == 20){
+            break;
+          }
+          
+        } toggleSpinner('none');
     }
 
 
@@ -101,7 +126,6 @@ const displayData = (data) =>{
     <h5 class="modal-title" id="exampleModalToggleLabel">Device Name: <span class="text-white p-2 rounded-3 bg-info"> ${data.data.name} </span> </h5> <br>
     <h6 class="text-muted">Relese date: ${releseData}</h6>
     </div>
-         
     <div class="modal-body">
     <div class="card mb-3" style="max-width: 1000px;">
 
@@ -109,7 +133,6 @@ const displayData = (data) =>{
      <div class="col-md-4 m-auto w-25">
        <img class="img-fluid" src="${data.data.image}" alt="...">
      </div>
-
          <div class="col-md-8 w">
            <div class="card-body">
              <ul class="list-group">
@@ -120,22 +143,16 @@ const displayData = (data) =>{
              </ul>
            </div>
          </div>
-
         </div>
-
         </div>
       </div>
         <div class="modal-footer justify-content-center"> 
         <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">See More Info</button>
     </div>
     ` ;
-
-
     detailModalContainer2.innerHTML = '';
     detailModalContainer2.innerHTML = 
-    
     `
-    
     <div class="modal-header">
     <h5 class="modal-title" id="exampleModalToggleLabel2">Other Facilities Of  <span class="p-2 rounded-3 bg-danger bg-opacity-25 text-dark"> ${data.data.name} </span> </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -155,7 +172,5 @@ const displayData = (data) =>{
   </div>
     `
     ;
-  
-
     }
 }

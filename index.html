@@ -18,7 +18,7 @@
     <!-- customCss -->
     <link rel="stylesheet" href="./files/style.css">
 </head>
-<body>
+<body class="container">
     <header>
         <div class="input-group mb-3 w-50 mx-auto mt-5">
             <input type="text" id="userInput" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -27,14 +27,27 @@
               <button onclick="userInputBtn()" class="btn btn-outline-secondary" type="button">Button</button>
             </div>
           </div>
+
+    
+
     </header>
-    <main class="container">
+
+
+    <main >
+     <div>
+        
+    <div id="spinner">
+      <div id="innerspiner" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+     </div>
 
       <!-- phones i got (Phone Container) --> 
-      <div id="phoneContainer" class="row row-cols-1 row-cols-md-3 g-4">
-
-
-      
+     <div id="mainResultContainer">
+      <div id="phoneContainer" class="row row-cols-1 row-cols-md-3 g-4"> </div>
+     </div>
+    
     </main>
     <footer>
 
