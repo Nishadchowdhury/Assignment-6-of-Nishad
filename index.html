@@ -1,89 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NSDarena</title>
-    <link rel="shortcut icon" href="./files/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./files/images/favicon.png" type="image/x-icon" />
     <!-- for icons -->
     <script src="https://kit.fontawesome.com/b2cee46726.js" crossorigin="anonymous"></script>
     <!-- for fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- offlineCss -->
-    <link rel="stylesheet" href="./forDlt/bootstrap.min.css">
+    <!-- Framework CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <!-- customCss -->
-    <link rel="stylesheet" href="./files/style.css">
-</head>
-<body class="container">
+    <link rel="stylesheet" href="./files/style.css" />
+  </head>
+  <body class="container">
+    <!-- header started -->
     <header>
-        <div class="input-group mb-3 w-50 mx-auto mt-5">
-            <input type="text" id="userInput" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div id="siteLogo" class="w-50 mx-auto">
+        <img class="img-fluid" src="./files/images/NDSarena  logo.jpg" alt="" />
+      </div>
 
-            <div class="input-group-append">
-              <button onclick="userInputBtn()" class="btn btn-outline-secondary" type="button">Button</button>
-            </div>
-          </div>
+      <div class="input-group mb-3 w-50 mx-auto mt-2">
+        <input
+          type="text"
+          id="userInput"
+          class="form-control"
+          placeholder=" &#127760; Search the phone you want"
+          aria-label="Search the phone you want"
+          aria-describedby="basic-addon2"
+        />
 
-    
-
+        <div class="input-group-append">
+          <button onclick="userInputBtn()" class="btn btn-outline-secondary" type="button">Button</button>
+        </div>
+      </div>
     </header>
 
+    <!-- main part of the markup , started -->
 
-    <main >
-     <div>
-        
-    <div id="spinner">
-      <div id="innerspiner" class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
+    <main>
+      <div>
+        <div id="spinner">
+          <div id="innerspiner" class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       </div>
-    </div>
-     </div>
 
-      <!-- phones i got (Phone Container) --> 
-     <div id="mainResultContainer">
-      <div id="phoneContainer" class="row row-cols-1 row-cols-md-3 g-4"> </div>
-     </div>
-    
+      <!-- phones i got (Phone Container) -->
+      <div id="mainResultContainer">
+        <div id="phoneContainer" class="row row-cols-1 row-cols-md-3 g-4"></div>
+      </div>
     </main>
+
+    <!-- footer started -->
     <footer>
-
-      
-<!-- modal body -->
-<div class="modal fade "  data-bs-backdrop="static" data-bs-keyboard="false"  id="exampleModalToggle" aria-hidden="true"         
-aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div id="modalContainer" class="modal-content">
-        
+      <!-- modal body -->
+      <div
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        id="exampleModalToggle"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div id="modalContainer" class="modal-content"></div>
+        </div>
       </div>
-    </div>
-  
-  </div>
 
-  <!-- modal 2 started -->
+      <!-- modal 2 started -->
 
-  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div  id="modalContainer2" class="modal-content">
-
+      <div
+        class="modal fade"
+        id="exampleModalToggle2"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div id="modalContainer2" class="modal-content"></div>
+        </div>
       </div>
-    </div>
-  </div>
 
-<!-- modal end -->
-
-
+      <!-- modal end -->
     </footer>
-
-  
 
     <!-- customJS -->
     <script src="./files/app.js"></script>
 
-    <!-- offline bt js -->
-    <script src="./forDlt/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Framework bt js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
+

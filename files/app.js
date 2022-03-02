@@ -9,8 +9,6 @@ const userInputBtn = () =>{
       return input;
     }
   } 
-
-  
     // get data to api 
     const url = `https://openapi.programming-hero.com/api/phones?search=${userInput()}`;
     fetch(url)
@@ -18,7 +16,7 @@ const userInputBtn = () =>{
     .then(data => displayData(data.data));
     
 };
-
+//spinner
 const toggleSpinner = displayStyle => {
   document.getElementById('spinner').style.display = displayStyle;
   const aboutResults = displayStyle;
@@ -68,22 +66,16 @@ const displayData = (data) =>{
         </div>
       </div>
         `;
-
         phonesContainer.appendChild(div);
+        //for break the loop 
           counter ++
           if(counter == 20){
             break;
           }
-          
         } toggleSpinner('none');
     }
-
-
-
 }   
   const detailsBtn = (playerIdData) =>{
-
-
     const url = `https://openapi.programming-hero.com/api/phone/${playerIdData}`;
     fetch(url)
     .then(res => res.json())
@@ -93,7 +85,6 @@ const displayData = (data) =>{
         
     const detailModalContainer = document.getElementById('modalContainer');
     const detailModalContainer2 = document.getElementById('modalContainer2');
-
     const releseDate = () => {
 
     // getting date info
@@ -104,18 +95,17 @@ const displayData = (data) =>{
     }else{
         return getreleseDate;
     }}
-    
+
     //getting other info of device
     const otherData = data.data.others;
     let otherDetail = '';
     for(const singleData in otherData){
         otherDetail = otherDetail + (singleData + ' : ' + otherData[singleData] + '<br><br>' );
-
     }
 
     // getting all the sensors list as a string
     const sensores = data.data.mainFeatures.sensors.join(` , `);
-    
+    // getting releseDate 
     const releseData = releseDate();
 
     detailModalContainer.innerHTML = '';
@@ -128,7 +118,6 @@ const displayData = (data) =>{
     </div>
     <div class="modal-body">
     <div class="card mb-3" style="max-width: 1000px;">
-
    <div class="row g-0">
      <div class="col-md-4 m-auto w-25">
        <img class="img-fluid" src="${data.data.image}" alt="...">
@@ -150,27 +139,29 @@ const displayData = (data) =>{
         <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">See More Info</button>
     </div>
     ` ;
+    
+    //it's for second modal 
     detailModalContainer2.innerHTML = '';
     detailModalContainer2.innerHTML = 
     `
     <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalToggleLabel2">Other Facilities Of  <span class="p-2 rounded-3 bg-danger bg-opacity-25 text-dark"> ${data.data.name} </span> </h5>
+    <h5 class="modal-title" id="exampleModalToggleLabel2">Other Facilities Of  <span  style="background-color:rgba(255, 0, 0, 0.4);" class="p-2 rounded-3 text-white"> 
+        ${data.data.name} </span> </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-  
-  <ul class="list-group">
-  <li class="list-group-item list-group-item-success">   <span class="p-1 mb-2 mt-2 d-inline-block rounded-3 bg-white  text-dark">Sensores    : &#8675;  &#8675; </span>  <br> ${sensores} . </li>
+    </div>
 
-  </ul>
-  <ul class="list-group mt-3">
-  <li class="list-group-item list-group-item-danger text-dark  ">  <span class="p-2 mt-2 d-inline-block rounded-3 bg-white  text-dark"> Other Features  : &#8675;  &#8675; </span> <br> <br> ${otherDetail} </li>
-  </ul>
-  </div>
-  <div class="modal-footer justify-content-center">
-    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">See The Basic Info</button>
-  </div>
-    `
-    ;
+    <div class="modal-body">
+      
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">   <span class="p-1 mb-2 mt-2 d-inline-block rounded-3 bg-white  text-dark">Sensores : &    #8675;  &#8675; </span>  <br> ${sensores} . </li>
+        </ul>
+     <ul class="list-group mt-3">
+             <li class="list-group-item list-group-item-danger text-dark  ">  <span class="p-2 mt-2 d-inline-block rounded-3 bg-white  text-dark">    Other Features  : &#8675;  &#8675; </span> <br> <br> ${otherDetail} </li>
+     </ul>
+    </div>
+    <div class="modal-footer justify-content-center">
+       <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">See The Basic Info</button>
+    </div>
+    `;
     }
 }
